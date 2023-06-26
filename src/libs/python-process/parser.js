@@ -10,11 +10,8 @@ const processLine = (line) => {
 
 const parserContent = (content) => {
   const fileLines = content.split(/\r?\n/);
-  let parsedContent = "";
-  for (const line of fileLines) {
-    const result = processLine(line);
-    parsedContent += result;
-  }
+  let processLines = fileLines.map(processLine);
+  let parsedContent = processLines.join("\n");
   return parsedContent;
 };
 
