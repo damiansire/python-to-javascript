@@ -1,4 +1,5 @@
 const { isVariableAssignment } = require("./detectElement.js");
+const KeyCounter = require("../../data-structures/key-counter.js");
 
 const getVariableIdentifier = (line) => {
   //Evita los espacios, ejemplo numero1 = 5, numero1    =    5, '    numero2    =    10    '
@@ -26,24 +27,6 @@ const processLine = (line, variablesCount, variableHistory) => {
   }
   return `${line} : No contemplada`;
 };
-
-class KeyCounter {
-  constructor() {
-    this.occurrences = {};
-  }
-
-  addOcurrence(key) {
-    if (key in this.occurrences) {
-      this.occurrences[key]++;
-    } else {
-      this.occurrences[key] = 1;
-    }
-  }
-
-  getOccurrences(key) {
-    return this.occurrences[key] || 0;
-  }
-}
 
 function countVariables(lines) {
   const variablesCount = new KeyCounter();
